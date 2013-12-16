@@ -8,6 +8,8 @@ Requirements
  + getopts
  + yaml
  + sys
+ + logging
+ + datetime
 
 Installation
 ===
