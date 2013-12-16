@@ -7,22 +7,16 @@ import yaml, sys, getopt
 
 def main(argv):
     phonenumber = ''
+    subject = ''
     message = ''
 
     try:
-      opts, args = getopt.getopt(argv,"h:n:m:",["phonenumber=","message="])
-    except getopt.GetoptError:
-      print 'Error: zabbix-twilio.py -n <phonenumber> -m <message>'
-      sys.exit(2)
-
-    for opt, arg in opts:
-          if opt == '-h':
-             print 'Usage: zabbix-twilio.py -n <phonenumber> -m <message>'
-             sys.exit(2)
-          elif opt in ("-n", "--phonenumber"):
-             phonenumber = arg
-          elif opt in ("-m", "--message"):
-             message = arg
+        phonenumber = argv[1]
+        subject = argv[2]
+        message = argv[3]
+    except BaseException, emsg:
+        print('Usage: zabbix-twilio.py <phonenumber> <subject> <message>: ' + str(emsg))
+        sys.exit(2)
 
     #get configuration
     try:
@@ -35,7 +29,7 @@ def main(argv):
     try:
         client = TwilioRestClient(config['account_number'], config['account_token'])
         cm = client.messages.create(to=phonenumber, from_=config['from_number'],
-                                     body=message)
+                                     body=subject + ': ' +message)
     except BaseException, emsg:
          print('Cannot send message: ' + str(emsg))
          sys.exit(2)

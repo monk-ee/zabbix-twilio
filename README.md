@@ -28,4 +28,4 @@ The TwilioRestClient needs your Twilio credentials.
 
 Usage
 ===
-zabbix-twilio.py -n <phonenumber> -m <message>
+zabbix-twilio.py <phonenumber> <subject> <message>
