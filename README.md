@@ -13,6 +13,10 @@ Installation
 ===
 Download the zip from github and place:
 
+NB: Debian Wheezy:
+    AlertScriptsPath=/usr/lib/zabbix/alertscripts
+
+Normal:
     cp zabbix-twilio.py /etc/zabbix/alert.d/
     cp config.yml.sample /etc/zabbix/alert.d/config.yml
 
